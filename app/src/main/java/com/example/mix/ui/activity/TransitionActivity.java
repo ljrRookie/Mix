@@ -1,4 +1,4 @@
-package com.example.mix;
+package com.example.mix.ui.activity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -6,6 +6,8 @@ import android.databinding.ViewDataBinding;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.mix.R;
 
 public class TransitionActivity extends AppCompatActivity {
 

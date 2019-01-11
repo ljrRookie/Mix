@@ -1,4 +1,4 @@
-package com.example.mix;
+package com.example.mix.ui.activity;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.example.mix.R;
 import com.example.mix.adapter.viewpager.MyFragmentPagerAdapter;
 import com.example.mix.databinding.ActivityMainBinding;
 import com.example.mix.ui.left.TestFragemnt;
@@ -186,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = menuItem.getItemId();
 
         if (id == R.id.nav_info) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_quest) {
 
         } else if (id == R.id.nav_mode) {
