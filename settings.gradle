@@ -1,0 +1,1 @@
+include ':app', ':library_base', ':library_res', ':library_res', ':wan_android', ':xrecyclerview'

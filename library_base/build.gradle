@@ -1,0 +1,68 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    // https://github.com/ReactiveX/RxJava/issues/4445
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    api 'com.google.code.gson:gson:2.8.5'
+    api 'com.squareup.retrofit2:retrofit:2.4.0'
+    api 'com.squareup.retrofit2:converter-gson:2.4.0'
+    api 'com.squareup.okhttp3:okhttp:3.11.0'
+    api 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    api 'com.squareup.retrofit2:adapter-rxjava:2.4.0'
+    api project(':library_res')
+    api 'com.android.support:design:28.0.0'
+    api 'com.android.support:support-v4:28.0.0'
+    api 'com.github.lygttpod:SuperTextView:2.1.7'
+    api 'android.arch.lifecycle:extensions:1.1.1'
+    api 'android.arch.lifecycle:reactivestreams:1.1.1'
+    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    // 用于链式调用
+    api 'io.reactivex:rxandroid:1.2.1'
+    api "android.arch.persistence.room:runtime:$rootProject.roomVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"
+    api "android.arch.persistence.room:rxjava2:$rootProject.roomVersion"
+    api 'android.arch.paging:runtime:1.0.1'
+    api 'com.youth.banner:banner:1.4.10'
+    api 'jp.wasabeef:glide-transformations:2.0.1'
+    api files('libs/commons-lang-2.6.jar')
+    api project(':xrecyclerview')
+    api 'com.orhanobut:logger:2.2.0'
+
+}

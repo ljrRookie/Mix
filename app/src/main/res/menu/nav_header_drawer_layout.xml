@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_info"
+            android:icon="@mipmap/icon_menu_main"
+            android:title="项目信息"/>
+        <item
+            android:id="@+id/nav_quest"
+            android:icon="@mipmap/icon_menu_main_quest"
+            android:title="问题反馈"/>
+
+        <item
+            android:id="@+id/nav_mode"
+            android:icon="@mipmap/icon_menu_mode"
+            android:title="夜间模式"/>
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@mipmap/icon_menu_share"
+            android:title="分享"/>
+        <item
+            android:id="@+id/nav_me"
+            android:icon="@mipmap/icon_menu_mine"
+            android:title="关于作者"/>
+    </group>
+
+    <group >
+        <menu>
+            <item
+                android:id="@+id/nav_login"
+                android:icon="@mipmap/icon_menu_login"
+                android:title="账号登录"/>
+            <item
+                android:id="@+id/nav_collect"
+                android:icon="@mipmap/icon_menu_collect"
+                android:title="我的收藏"/>
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@mipmap/icon_menu_exit"
+                android:title="退出应用"/>
+        </menu>
+    </group>
+</menu>
