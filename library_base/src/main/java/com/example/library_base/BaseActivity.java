@@ -93,16 +93,13 @@ public class BaseActivity<VM extends AndroidViewModel,SV extends ViewDataBinding
             //去除默认Title显示
             actionBar.setDisplayShowTitleEnabled(false);
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.icon_back);
+          //  actionBar.setHomeAsUpIndicator(R.drawable.icon_back);
         }
-        mBaseBinding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    finishAfterTransition();
-                } else {
-                    onBackPressed();
-                }
+        mBaseBinding.toolBar.setNavigationOnClickListener(v -> {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                finishAfterTransition();
+            } else {
+                onBackPressed();
             }
         });
     }

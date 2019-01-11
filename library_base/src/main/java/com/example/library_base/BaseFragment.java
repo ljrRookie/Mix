@@ -102,12 +102,9 @@ public abstract class BaseFragment<VM extends AndroidViewModel,SV extends ViewDa
         }
         mRefresh = getView(R.id.ll_error_refresh);
         // 点击加载失败布局
-        mRefresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showLoading();
-                onRefresh();
-            }
+        mRefresh.setOnClickListener(v -> {
+            showLoading();
+            onRefresh();
         });
         bindingView.getRoot().setVisibility(View.GONE);
         initViewModel();

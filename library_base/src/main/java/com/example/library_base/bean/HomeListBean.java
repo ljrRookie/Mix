@@ -1,13 +1,12 @@
-package com.example.wan_android.bean;
+package com.example.library_base.bean;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
 
-import com.example.wan_android.BR;
+import com.example.library_base.BR;
 
 import java.util.List;
-
 
 
 public class HomeListBean extends BaseObservable {

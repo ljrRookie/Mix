@@ -86,7 +86,7 @@ public class HttpUtils {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.client(getOkClient());
         builder.baseUrl(apiUrl);//设置远程地址
-       // builder.addConverterFactory(new NullOnEmptyConverterFactory());
+        builder.addConverterFactory(new NullOnEmptyConverterFactory());
         builder.addConverterFactory(GsonConverterFactory.create(getGson()));
         builder.addCallAdapterFactory(RxJavaCallAdapterFactory.create());
         return builder;
@@ -130,13 +130,13 @@ public class HttpUtils {
             okBuilder.readTimeout(30, TimeUnit.SECONDS);
             okBuilder.connectTimeout(30, TimeUnit.SECONDS);
             okBuilder.writeTimeout(30, TimeUnit.SECONDS);
-          //  okBuilder.addInterceptor(new HttpHeadInterceptor(context));
+            okBuilder.addInterceptor(new HttpHeadInterceptor(context));
             // 持久化cookie
-          //  okBuilder.addInterceptor(new ReceivedCookiesInterceptor(context));
-           // okBuilder.addInterceptor(new AddCookiesInterceptor(context));
+            okBuilder.addInterceptor(new ReceivedCookiesInterceptor(context));
+            okBuilder.addInterceptor(new AddCookiesInterceptor(context));
             // 添加缓存，无网访问时会拿缓存,只会缓存get请求
-            //okBuilder.addInterceptor(new AddCacheInterceptor(context));
-           // okBuilder.cache(cache);
+            okBuilder.addInterceptor(new AddCacheInterceptor(context));
+            okBuilder.cache(cache);
             okBuilder.addInterceptor(getInterceptor());
 
             return okBuilder.build();

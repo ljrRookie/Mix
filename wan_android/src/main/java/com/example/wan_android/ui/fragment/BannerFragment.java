@@ -1,9 +1,7 @@
 package com.example.wan_android.ui.fragment;
 
 
-import android.arch.lifecycle.Observer;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,17 +9,13 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.example.library_base.BaseFragment;
-
-
+import com.example.library_base.bean.WanAndroidBannerBean;
 import com.example.library_base.utils.CommonUtils;
 import com.example.library_base.utils.DensityUtil;
 import com.example.library_base.utils.GlideImageLoader;
 import com.example.library_base.utils.ImageLoadUtil;
-import com.example.library_base.utils.LogUtil;
 import com.example.wan_android.R;
 import com.example.wan_android.WanAndroidListViewModel;
-import com.example.wan_android.bean.HomeListBean;
-import com.example.wan_android.bean.WanAndroidBannerBean;
 import com.example.wan_android.databinding.FragmentWanAndroidBannerBinding;
 import com.example.wan_android.databinding.HeaderWanAndroidBinding;
 import com.example.wan_android.ui.adapter.WanAndroidAdapter;

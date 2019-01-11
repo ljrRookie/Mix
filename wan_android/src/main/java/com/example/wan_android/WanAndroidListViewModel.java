@@ -4,15 +4,16 @@ import android.app.Application;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
-import com.example.library_base.httputil.HttpUtils;
-import com.example.library_base.httputil.utils.BuildFactory;
+import com.example.library_base.bean.HomeListBean;
+import com.example.library_base.bean.WanAndroidBannerBean;
+import com.example.library_base.httputil.HttpClient;
 import com.example.library_base.viewmodel.BaseListViewModel;
-import com.example.wan_android.api.WanAndroidHttpClient;
-import com.example.wan_android.bean.HomeListBean;
-import com.example.wan_android.bean.WanAndroidBannerBean;
+
+
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -25,7 +26,7 @@ public class WanAndroidListViewModel extends BaseListViewModel {
 
     public MutableLiveData<WanAndroidBannerBean> getWanAndroidBanner() {
         final MutableLiveData<WanAndroidBannerBean> data = new MutableLiveData<>();
-        WanAndroidHttpClient.Builder.getWanAndroidServer().getWanAndroidBanner()
+        HttpClient.Builder.getWanAndroidServer().getWanAndroidBanner()
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<WanAndroidBannerBean>() {
                     @Override
@@ -65,7 +66,7 @@ public class WanAndroidListViewModel extends BaseListViewModel {
     }
     public MutableLiveData<HomeListBean> getHomeList(Integer cid){
         final MutableLiveData<HomeListBean> listData = new MutableLiveData<>();
-        WanAndroidHttpClient.Builder.getWanAndroidServer().getHomeList(mPage,cid)
+        HttpClient.Builder.getWanAndroidServer().getHomeList(mPage,cid)
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HomeListBean>() {
                     @Override

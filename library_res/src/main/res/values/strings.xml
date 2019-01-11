@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">library_res</string>
+    <string name="edit_account">请输入账号</string>
+    <string name="edit_pwd">请输入密码</string>
 </resources>

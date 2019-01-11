@@ -1,8 +1,7 @@
-package com.example.wan_android.bean;
+package com.example.library_base.bean;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 public class WanAndroidBannerBean {

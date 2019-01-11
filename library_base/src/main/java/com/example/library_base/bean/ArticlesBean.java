@@ -1,4 +1,4 @@
-package com.example.wan_android.bean;
+package com.example.library_base.bean;
 
 
 public class ArticlesBean {

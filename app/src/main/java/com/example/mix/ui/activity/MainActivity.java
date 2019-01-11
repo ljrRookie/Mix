@@ -25,6 +25,7 @@ import com.example.mix.databinding.ActivityMainBinding;
 import com.example.mix.ui.left.TestFragemnt;
 import com.example.mix.ui.left.WanAndroidFragment;
 
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ViewPager.OnPageChangeListener, NavigationView.OnNavigationItemSelectedListener {
@@ -43,24 +44,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         initId();
         initContentFragment();
         initDrawerLayout();
         initListener();
     }
 
-    private void initDrawerLayout() {
-
+    private void initId() {
+        drawerLayout = mBinding.drawerLayout;
+        navView = mBinding.navView;
+        toolbar = mBinding.toolbar;
+        vpContent = mBinding.vpContent;
+        ivTitleOne = mBinding.ivTitleOne;
+        ivTitleTwo = mBinding.ivTitleTwo;
+        ivTitleThree = mBinding.ivTitleThree;
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            //去除默认Title显示
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
     }
 
-    private void initListener() {
-        mBinding.ivTitleOne.setOnClickListener(this);
-        mBinding.ivTitleTwo.setOnClickListener(this);
-        mBinding.ivTitleThree.setOnClickListener(this);
-        mBinding.navView.setNavigationItemSelectedListener(this);
-
-    }
     private void initContentFragment() {
         ArrayList<Fragment> mFragmentList = new ArrayList<>();
         mFragmentList.add(new WanAndroidFragment());
@@ -76,29 +85,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setCurrentItem(0);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.iv_title_two:
-                // 不然cpu会有损耗
-                if (vpContent.getCurrentItem() != 1) {
-                    setCurrentItem(1);
-                }
-                break;
-            case R.id.iv_title_one:
-                if (vpContent.getCurrentItem() != 0) {
-                    setCurrentItem(0);
-                }
-                break;
-            case R.id.iv_title_three:
-                if (vpContent.getCurrentItem() != 2) {
-                    setCurrentItem(2);
-                }
-                break;
-            default:
-                break;
-        }
+    private void initDrawerLayout() {
+
     }
+
+    private void initListener() {
+        mBinding.ivTitleOne.setOnClickListener(this);
+        mBinding.ivTitleTwo.setOnClickListener(this);
+        mBinding.ivTitleThree.setOnClickListener(this);
+        mBinding.navView.setNavigationItemSelectedListener(this);
+
+    }
+
     /**
      * 切换页面
      *
@@ -127,24 +125,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ivTitleTwo.setSelected(isTwo);
         ivTitleThree.setSelected(isThree);
     }
-    private void initId() {
-        drawerLayout = mBinding.drawerLayout;
-        navView = mBinding.navView;
-        toolbar = mBinding.toolbar;
-        vpContent = mBinding.vpContent;
-        ivTitleOne = mBinding.ivTitleOne;
-        ivTitleTwo = mBinding.ivTitleTwo;
-        ivTitleThree = mBinding.ivTitleThree;
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            //去除默认Title显示
-            actionBar.setDisplayShowTitleEnabled(false);
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_title_two:
+                // 不然cpu会有损耗
+                if (vpContent.getCurrentItem() != 1) {
+                    setCurrentItem(1);
+                }
+                break;
+            case R.id.iv_title_one:
+                if (vpContent.getCurrentItem() != 0) {
+                    setCurrentItem(0);
+                }
+                break;
+            case R.id.iv_title_three:
+                if (vpContent.getCurrentItem() != 2) {
+                    setCurrentItem(2);
+                }
+                break;
+            default:
+                break;
         }
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.setDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
     }
+
     @Override
     public void onPageScrolled(int i, float v, int i1) {
 
@@ -167,6 +172,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
+    @Override
+    public void onPageScrollStateChanged(int i) {
+
+    }
+
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -176,36 +187,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
-    @Override
-    public void onPageScrollStateChanged(int i) {
-
-    }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        int id = menuItem.getItemId();
-
-        if (id == R.id.nav_info) {
-
-        } else if (id == R.id.nav_quest) {
-
-        } else if (id == R.id.nav_mode) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_me) {
-
-        } else if (id == R.id.nav_login) {
-
-        }else if (id == R.id.nav_collect) {
-
-        }else if (id == R.id.nav_exit) {
-            // 退出应用
-            finish();
-        }
 
         drawerLayout.closeDrawer(GravityCompat.START);
+        drawerLayout.postDelayed(() -> {
+            int id = menuItem.getItemId();
+            if (id == R.id.nav_info) {
+
+            } else if (id == R.id.nav_quest) {
+
+            } else if (id == R.id.nav_mode) {
+
+            } else if (id == R.id.nav_share) {
+
+            } else if (id == R.id.nav_me) {
+
+            } else if (id == R.id.nav_login) {
+                LoginActivity.start(MainActivity.this);
+            } else if (id == R.id.nav_collect) {
+
+            } else if (id == R.id.nav_exit) {
+                // 退出应用
+                finish();
+            }
+
+        }, 260);
         return true;
 
 

@@ -65,4 +65,6 @@ dependencies {
     api project(':xrecyclerview')
     api 'com.orhanobut:logger:2.2.0'
 
+    api 'me.drakeet.support:toastcompat:1.1.0'
+
 }

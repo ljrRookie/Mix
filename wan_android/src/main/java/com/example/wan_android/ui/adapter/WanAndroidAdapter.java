@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 
 import com.example.library_base.BaseRecyclerViewAdapter;
 import com.example.library_base.BaseRecyclerViewHolder;
-import com.example.library_base.utils.DebugUtil;
+
+import com.example.library_base.bean.ArticlesBean;
 import com.example.library_base.utils.PerfectClickListener;
 import com.example.wan_android.R;
-import com.example.wan_android.bean.ArticlesBean;
+
+import com.example.wan_android.databinding.ItemWanAndroidBannerBinding;
 import com.example.wan_android.databinding.ItemWanAndroidBinding;
 
 /**
@@ -42,7 +44,7 @@ public class WanAndroidAdapter extends BaseRecyclerViewAdapter<ArticlesBean> {
 
     @Override
     public BaseRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(parent, R.layout.item_wan_android);
+        return new ViewHolder(parent, R.layout.item_wan_android_banner);
 
     }
 
@@ -58,81 +60,85 @@ public class WanAndroidAdapter extends BaseRecyclerViewAdapter<ArticlesBean> {
         this.isNoImage = true;
     }
 
-   private class ViewHolder extends BaseRecyclerViewHolder<ArticlesBean, ItemWanAndroidBinding> {
+   private class ViewHolder extends BaseRecyclerViewHolder<ArticlesBean,ItemWanAndroidBannerBinding> {
 
         ViewHolder(ViewGroup context, int layoutId) {
             super(context, layoutId);
         }
 
-        @Override
-        public void onBindViewHolder(final ArticlesBean bean, final int position) {
-            if (bean != null) {
-                binding.setBean(bean);
-                binding.setAdapter(WanAndroidAdapter.this);
-                if (!TextUtils.isEmpty(bean.getEnvelopePic()) && !isNoImage) {
-                    bean.setShowImage(true);
-                } else {
-                    bean.setShowImage(false);
-                }
+       @Override
+       public void onBindViewHolder(ArticlesBean bean, int position) {
+           if (bean != null) {
+               binding.setBean(bean);
+               binding.setAdapter(WanAndroidAdapter.this);
+               if (!TextUtils.isEmpty(bean.getEnvelopePic()) && !isNoImage) {
+                   bean.setShowImage(true);
+               } else {
+                   bean.setShowImage(false);
+               }
 
-                binding.vbCollect.setOnClickListener(new PerfectClickListener() {
-                    @Override
-                    protected void onNoDoubleClick(View v) {
-                      /* if (UserUtil.isLogin(activity) && model != null) {
-                            // 为什么状态值相反？因为点了之后控件已改变状态
-                            DebugUtil.error("-----binding.vbCollect.isChecked():" + binding.vbCollect.isChecked());
-                            if (!binding.vbCollect.isChecked()) {
+               binding.vbCollect.setOnClickListener(new PerfectClickListener() {
+                   @Override
+                   protected void onNoDoubleClick(View v) {
+                     /*  if (UserUtil.isLogin(activity) && model != null) {
+                           // 为什么状态值相反？因为点了之后控件已改变状态
+                           DebugUtil.error("-----binding.vbCollect.isChecked():" + binding.vbCollect.isChecked());
+                           if (!binding.vbCollect.isChecked()) {
                                model.unCollect(isCollectList, bean.getId(), bean.getOriginId(), new WanNavigator.OnCollectNavigator() {
-                                    @Override
-                                    public void onSuccess() {
-                                        if (isCollectList) {
+                                   @Override
+                                   public void onSuccess() {
+                                       if (isCollectList) {
 
-                                            int indexOf = getData().indexOf(bean);
-                                            // 角标始终加一
-                                            int adapterPosition = getAdapterPosition();
+                                           int indexOf = getData().indexOf(bean);
+                                           // 角标始终加一
+                                           int adapterPosition = getAdapterPosition();
 
-                                            DebugUtil.error("getAdapterPosition():" + getAdapterPosition());
-                                            DebugUtil.error("indexOf:" + indexOf);
-                                            // 移除数据增加删除动画
-                                            getData().remove(indexOf);
-                                            notifyItemRemoved(adapterPosition);
-                                        } else {
-                                            bean.setCollect(binding.vbCollect.isChecked());
-                                            ToastUtil.showToastLong("已取消收藏");
-                                        }
-                                    }
+                                           DebugUtil.error("getAdapterPosition():" + getAdapterPosition());
+                                           DebugUtil.error("indexOf:" + indexOf);
+                                           // 移除数据增加删除动画
+                                           getData().remove(indexOf);
+                                           notifyItemRemoved(adapterPosition);
+                                       } else {
+                                           bean.setCollect(binding.vbCollect.isChecked());
+                                           ToastUtil.showToastLong("已取消收藏");
+                                       }
+                                   }
 
-                                    @Override
-                                    public void onFailure() {
-                                        bean.setCollect(true);
-                                        notifyItemChanged(getAdapterPosition());
-                                        ToastUtil.showToastLong("取消收藏失败");
-                                    }
-                                });
-                            } else {
-                              model.collect(bean.getId(), new WanNavigator.OnCollectNavigator() {
-                                    @Override
-                                    public void onSuccess() {
-                                        bean.setCollect(true);
-                                        ToastUtil.showToastLong("收藏成功");
-                                    }
+                                   @Override
+                                   public void onFailure() {
+                                       bean.setCollect(true);
+                                       notifyItemChanged(getAdapterPosition());
+                                       ToastUtil.showToastLong("取消收藏失败");
+                                   }
+                               });
+                           } else {
+                               model.collect(bean.getId(), new WanNavigator.OnCollectNavigator() {
+                                   @Override
+                                   public void onSuccess() {
+                                       bean.setCollect(true);
+                                       ToastUtil.showToastLong("收藏成功");
+                                   }
 
-                                    @Override
-                                    public void onFailure() {
-                                        ToastUtil.showToastLong("收藏失败");
-                                        bean.setCollect(false);
-                                        notifyItemChanged(getAdapterPosition());
-                                    }
-                                });
-                            }
-                        } else {
-                            bean.setCollect(false);
-                            notifyItemChanged(getAdapterPosition());
-                        }*/
-                    }
-                });
-            }
-        }
+                                   @Override
+                                   public void onFailure() {
+                                       ToastUtil.showToastLong("收藏失败");
+                                       bean.setCollect(false);
+                                       notifyItemChanged(getAdapterPosition());
+                                   }
+                               });
+                           }
+                       } else {
+                           bean.setCollect(false);
+                           notifyItemChanged(getAdapterPosition());
+                       }*/
+                   }
+               });
+           }
+       }
+
+
+
+
     }
 
     public void openDetail(ArticlesBean bean) {
