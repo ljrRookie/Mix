@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
+import com.example.library_base.utils.LogUtil;
+
 import org.apache.commons.lang.StringUtils;
 
 import java.io.IOException;
@@ -30,8 +32,7 @@ public class ReceivedCookiesInterceptor implements Interceptor {
         if (!originalResponse.headers("Set-Cookie").isEmpty()) {
 
             List<String> d = originalResponse.headers("Set-Cookie");
-//                Log.e("jing", "------------得到的 cookies:" + d.toString());
-
+            LogUtil.d("cookies:" + d.toString());
             // 返回cookie
             if (!TextUtils.isEmpty(d.toString())) {
 
@@ -82,7 +83,7 @@ public class ReceivedCookiesInterceptor implements Interceptor {
 
                 editorConfig.putString("cookie", stringBuilder.toString());
                 editorConfig.apply();
-//                    Log.e("jing", "------------处理后的 cookies:" + stringBuilder.toString());
+                LogUtil.d("处理后的 cookies:" + stringBuilder.toString());
             }
         }
 

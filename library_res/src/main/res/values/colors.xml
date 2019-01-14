@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#00c6ff</color>
     <color name="colorPrimaryDark">#00a8ff</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#a9d3f7</color>
 
     <color name="colorTheme">#ff00c6ff</color>
     <!--页面背景的颜色-->
@@ -51,8 +51,8 @@
     <color name="colorSubtitle">#999</color>
 
     <color name="colorTitle">#666</color>
-    <!--谈红色  用于首页调整点击变色-->
-    <color name="colorSmallRed">#faebeb</color>
+    <!--谈蓝色  用于首页调整点击变色-->
+    <color name="colorSmallRed">#a9d3f7</color>
 
     <!--电影评分-->
     <color name="colorRateRed">#FB5B81</color>

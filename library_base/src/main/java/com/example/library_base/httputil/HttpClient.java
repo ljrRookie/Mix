@@ -3,6 +3,8 @@ package com.example.library_base.httputil;
 
 import com.example.library_base.bean.HomeListBean;
 import com.example.library_base.bean.LoginBean;
+import com.example.library_base.bean.NavBean;
+import com.example.library_base.bean.TypeBean;
 import com.example.library_base.bean.WanAndroidBannerBean;
 import com.example.library_base.httputil.utils.BuildFactory;
 
@@ -69,4 +71,14 @@ public interface HttpClient {
      */
     @GET("article/list/{page}/json")
     Observable<HomeListBean> getHomeList(@Path("page") int page, @Query("cid") Integer cid);
+    /**
+     * 体系数据
+     */
+    @GET("tree/json")
+    Observable<TypeBean> getType();
+    /**
+     * 导航数据
+     */
+    @GET("navi/json")
+    Observable<NavBean> getNavJson();
 }

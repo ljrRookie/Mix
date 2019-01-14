@@ -1,21 +1,18 @@
 package com.example.mix.ui.left;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.library_base.BaseFragment;
 
-import com.example.library_base.utils.LogUtil;
 import com.example.library_base.viewmodel.NoViewModel;
 import com.example.mix.R;
 import com.example.mix.adapter.viewpager.MyFragmentPagerAdapter;
 import com.example.mix.databinding.FragmentWanAndroidBinding;
+import com.example.wan_android.ui.fragment.NavFragment;
+import com.example.wan_android.ui.fragment.TypeFragment;
 import com.example.wan_android.ui.fragment.BannerFragment;
 
 import java.util.ArrayList;
@@ -51,11 +48,11 @@ public class WanAndroidFragment extends BaseFragment<NoViewModel,FragmentWanAndr
     private void initFragemntList() {
         mTitleList.clear();
         mTitleList.add("玩安卓");
-        mTitleList.add("知识体系");
-        mTitleList.add("导航数据");
+        mTitleList.add("安卓体系");
+        mTitleList.add("知识导航");
         mFragments.add(BannerFragment.newInstance());
-        mFragments.add(new TestFragemnt());
-        mFragments.add(new TestFragemnt());
+        mFragments.add(TypeFragment.newInstance());
+        mFragments.add(NavFragment.newInstance());
     }
 
 }

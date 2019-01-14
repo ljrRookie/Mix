@@ -15,10 +15,6 @@ import com.example.mix.viewmodel.LoginViewModel;
 
 public class LoginActivity extends BaseActivity <LoginViewModel,ActivityLoginRegisterBinding>{
 
-    public static void start(Context mContext) {
-        Intent intent = new Intent(mContext, LoginActivity.class);
-        mContext.startActivity(intent);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +49,7 @@ public class LoginActivity extends BaseActivity <LoginViewModel,ActivityLoginReg
      */
     public void loadSuccess(Boolean aBoolean) {
         if (aBoolean != null && aBoolean) {
+            setResult(RESULT_OK);
             finish();
         }
     }

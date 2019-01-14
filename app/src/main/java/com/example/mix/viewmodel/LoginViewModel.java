@@ -8,8 +8,10 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.example.library_base.bean.LoginBean;
+import com.example.library_base.bean.User;
 import com.example.library_base.bean.WanAndroidBannerBean;
 import com.example.library_base.httputil.HttpClient;
+import com.example.library_base.user.UserUtils;
 import com.example.library_base.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -93,6 +95,8 @@ public class LoginViewModel extends AndroidViewModel {
                     @Override
                     public void onNext(LoginBean loginBean) {
                         if (loginBean != null && loginBean.getData() != null) {
+                            UserUtils.isLogin(true);
+                            UserUtils.saveUser(loginBean.getData());
                             data.setValue(true);
                         } else {
                             if (loginBean != null) {
@@ -138,7 +142,8 @@ public class LoginViewModel extends AndroidViewModel {
                     @Override
                     public void onNext(LoginBean bean) {
                         if (bean != null && bean.getData() != null) {
-
+                            UserUtils.isLogin(true);
+                            UserUtils.saveUser(bean.getData());
                             data.setValue(true);
                         } else {
                             if (bean != null) {

@@ -121,6 +121,16 @@ public class ImageLoadUtil {
                 .bitmapTransform(new BlurTransformation(context, 23, 4))
                 .into(imageView);
     }
+    public static void displayGaussian(Context context, int src, ImageView imageView) {
+        // "23":模糊度；"4":图片缩放4倍后再进行模糊
+        Glide.with(context)
+                .load(src)
+                .error(R.drawable.stackblur_default)
+                .placeholder(R.drawable.stackblur_default)
+                .crossFade(500)
+                .bitmapTransform(new BlurTransformation(context, 13, 1))
+                .into(imageView);
+    }
 
     /**
      * 加载圆角图,暂时用到显示头像

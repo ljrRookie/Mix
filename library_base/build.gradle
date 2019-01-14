@@ -64,7 +64,7 @@ dependencies {
     api files('libs/commons-lang-2.6.jar')
     api project(':xrecyclerview')
     api 'com.orhanobut:logger:2.2.0'
-
+    api 'com.hyman:flowlayout-lib:1.1.2'
     api 'me.drakeet.support:toastcompat:1.1.0'
 
 }

@@ -1,4 +1,4 @@
-package com.example.wan_android;
+package com.example.wan_android.viewmodel;
 
 import android.app.Application;
 import android.arch.lifecycle.MutableLiveData;

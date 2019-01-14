@@ -1,9 +1,13 @@
 package com.example.mix.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.media.Image;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -19,9 +23,15 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.example.library_base.bean.User;
+import com.example.library_base.config.ActivityRequestCode;
+import com.example.library_base.config.SharedPreferencesKey;
+import com.example.library_base.user.UserUtils;
+import com.example.library_base.utils.ImageLoadUtil;
 import com.example.mix.R;
 import com.example.mix.adapter.viewpager.MyFragmentPagerAdapter;
 import com.example.mix.databinding.ActivityMainBinding;
+import com.example.mix.databinding.NavHeaderDrawerLayoutBinding;
 import com.example.mix.ui.left.TestFragemnt;
 import com.example.mix.ui.left.WanAndroidFragment;
 
@@ -39,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView ivTitleTwo;
     private ImageView ivTitleOne;
     private ImageView ivTitleThree;
-
+    private NavHeaderDrawerLayoutBinding bind;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +59,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initContentFragment();
         initDrawerLayout();
         initListener();
+        initUser();
+    }
+
+    private void initUser() {
+        if(UserUtils.isLogin()){
+            MenuItem item = navView.getMenu().findItem(R.id.nav_login);
+            item.setTitle("个人中心");
+            bind.tvName.setText(UserUtils.getUser(SharedPreferencesKey.USER_NAME));
+        }
     }
 
     private void initId() {
@@ -81,12 +100,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 设置ViewPager最大缓存的页面个数(cpu消耗少)
         vpContent.setOffscreenPageLimit(2);
         vpContent.addOnPageChangeListener(this);
-
         setCurrentItem(0);
     }
 
     private void initDrawerLayout() {
-
+        View headerView = navView.getHeaderView(0);
+        bind = DataBindingUtil.bind(headerView);
+        ImageLoadUtil.displayGaussian(this, R.mipmap.bg_trantion, bind.ivNavBg);
     }
 
     private void initListener() {
@@ -179,17 +199,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
         drawerLayout.closeDrawer(GravityCompat.START);
         drawerLayout.postDelayed(() -> {
             int id = menuItem.getItemId();
@@ -204,7 +214,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             } else if (id == R.id.nav_me) {
 
             } else if (id == R.id.nav_login) {
-                LoginActivity.start(MainActivity.this);
+                // LoginActivity.start(MainActivity.this);
+                if(UserUtils.isLogin()){
+
+                }else{
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    startActivityForResult(intent, ActivityRequestCode.LOGIN_SUCCESS);
+                }
             } else if (id == R.id.nav_collect) {
 
             } else if (id == R.id.nav_exit) {
@@ -214,7 +230,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }, 260);
         return true;
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            if(requestCode == ActivityRequestCode.LOGIN_SUCCESS){
+                MenuItem item = navView.getMenu().findItem(R.id.nav_login);
+                item.setTitle("个人中心");
+                bind.tvName.setText(UserUtils.getUser(SharedPreferencesKey.USER_NAME));
+            }
+        }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

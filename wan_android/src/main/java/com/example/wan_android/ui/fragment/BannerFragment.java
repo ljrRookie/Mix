@@ -15,7 +15,7 @@ import com.example.library_base.utils.DensityUtil;
 import com.example.library_base.utils.GlideImageLoader;
 import com.example.library_base.utils.ImageLoadUtil;
 import com.example.wan_android.R;
-import com.example.wan_android.WanAndroidListViewModel;
+import com.example.wan_android.viewmodel.WanAndroidListViewModel;
 import com.example.wan_android.databinding.FragmentWanAndroidBannerBinding;
 import com.example.wan_android.databinding.HeaderWanAndroidBinding;
 import com.example.wan_android.ui.adapter.WanAndroidAdapter;
