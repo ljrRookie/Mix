@@ -14,6 +14,7 @@
 <img  width="300" height=“599” src="https://github.com/ljrRookie/Mix/blob/master/readme/login.gif"></img>
 
 ### WanAndroid模块:
-1.登录账号密码：使用玩Android的账号密码登录即可。
-2.
+* 基本遵循Google Material Design设计风格。                                    
+* 登录账号密码：使用玩Android的账号密码登录即可。
+* [WanAndroid API](http://www.wanandroid.com/blog/show/2)
 
