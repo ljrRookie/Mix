@@ -6,9 +6,10 @@
 
 ## Screenshots
 
-<img width="173" height="274" src="https://github.com/youlookwhat/CloudReader/blob/master/file/page_book_01.png"></img>
-<img width="173" height=“274" src="https://github.com/youlookwhat/CloudReader/blob/master/file/page_gank_00.png"></img>
-<img width="173" height=“274" src="https://github.com/youlookwhat/CloudReader/blob/master/file/page_movie_01.png"></img>
-<img width="173" height=“274" src="https://github.com/youlookwhat/CloudReader/blob/master/file/page_menu_01.png"></img>
+<img width="300" height=“599” src="https://github.com/ljrRookie/Mix/blob/master/readme/nav.png"></img>
+<img width="300" height=“599” src="https://github.com/ljrRookie/Mix/blob/master/readme/wanandroidA.png"></img>
+<img width="300" height=“599” src="https://github.com/ljrRookie/Mix/blob/master/readme/wanandroidB.png"></img>
+<img width="300" height=“599” src="https://github.com/ljrRookie/Mix/blob/master/readme/wanandroidC.png"></img>
 
 ## Gif Preview
+<img  width="300" height=“599” src="https://github.com/ljrRookie/Mix/blob/master/readme/login.gif"></img>
