@@ -26,7 +26,9 @@ import android.widget.ImageView;
 import com.example.library_base.bean.User;
 import com.example.library_base.config.ActivityRequestCode;
 import com.example.library_base.config.SharedPreferencesKey;
+import com.example.library_base.ui.activity.WebViewActivity;
 import com.example.library_base.user.UserUtils;
+import com.example.library_base.utils.CommonUtils;
 import com.example.library_base.utils.ImageLoadUtil;
 import com.example.mix.R;
 import com.example.mix.adapter.viewpager.MyFragmentPagerAdapter;
@@ -107,6 +109,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         View headerView = navView.getHeaderView(0);
         bind = DataBindingUtil.bind(headerView);
         ImageLoadUtil.displayGaussian(this, R.mipmap.bg_trantion, bind.ivNavBg);
+        bind.ivNavBg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void initListener() {
@@ -203,18 +211,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         drawerLayout.closeDrawer(GravityCompat.START);
         drawerLayout.postDelayed(() -> {
             int id = menuItem.getItemId();
+
             if (id == R.id.nav_info) {
-
+                WebViewActivity.loadUrl(this, CommonUtils.getString(R.string.string_url_mix), "Mix");
             } else if (id == R.id.nav_quest) {
-
+                WebViewActivity.loadUrl(this, CommonUtils.getString(R.string.string_url_mix_issues), "Issues");
             } else if (id == R.id.nav_mode) {
 
             } else if (id == R.id.nav_share) {
 
             } else if (id == R.id.nav_me) {
-
+                WebViewActivity.loadUrl(this, CommonUtils.getString(R.string.string_url_RookieLjr), "RookieLjr");
             } else if (id == R.id.nav_login) {
-                // LoginActivity.start(MainActivity.this);
                 if(UserUtils.isLogin()){
 
                 }else{
@@ -228,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 finish();
             }
 
-        }, 260);
+        }, 300);
         return true;
     }
 

@@ -2,4 +2,12 @@
     package="com.example.library_base" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <application
+       >
+        <activity android:name=".ui.activity.WebViewActivity"
+            android:theme="@style/AppTheme">
+
+        </activity>
+
+    </application>
 </manifest>

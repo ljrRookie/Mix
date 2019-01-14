@@ -4,4 +4,7 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="string_url_mix">https://github.com/ljrRookie/Mix</string>
+    <string name="string_url_RookieLjr">https://github.com/ljrRookie</string>
+    <string name="string_url_mix_issues">https://github.com/ljrRookie/Mix/issues</string>
 </resources>
