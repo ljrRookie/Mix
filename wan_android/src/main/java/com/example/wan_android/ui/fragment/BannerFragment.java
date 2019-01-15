@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.example.library_base.BaseFragment;
 import com.example.library_base.bean.WanAndroidBannerBean;
+import com.example.library_base.ui.activity.WebViewActivity;
 import com.example.library_base.utils.CommonUtils;
 import com.example.library_base.utils.DensityUtil;
 import com.example.library_base.utils.GlideImageLoader;
@@ -116,7 +117,7 @@ public class BannerFragment extends BaseFragment<WanAndroidListViewModel,Fragmen
         androidBinding.banner.setImages(bannerImages).setImageLoader(new GlideImageLoader()).start();
         androidBinding.banner.setOnBannerListener(position -> {
             if (result.get(position) != null && !TextUtils.isEmpty(result.get(position).getUrl())) {
-               // WebViewActivity.loadUrl(getContext(), result.get(position).getUrl(), result.get(position).getTitle());
+                WebViewActivity.loadUrl(getContext(), result.get(position).getUrl(), result.get(position).getTitle());
             }
         });
         int size = bannerImages.size();

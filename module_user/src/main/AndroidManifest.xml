@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.user">
+
+    <application>
+        <activity
+            android:name="com.example.user.LoginActivity"
+            android:theme="@style/AppTheme">
+
+        </activity>
+
+    </application>
+</manifest>

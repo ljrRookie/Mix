@@ -11,7 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/library_base" />
             <option value="$PROJECT_DIR$/library_res" />
-            <option value="$PROJECT_DIR$/user" />
+            <option value="$PROJECT_DIR$/module_user" />
             <option value="$PROJECT_DIR$/wan_android" />
             <option value="$PROJECT_DIR$/xrecyclerview" />
           </set>

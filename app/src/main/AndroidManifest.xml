@@ -19,10 +19,7 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".ui.activity.LoginActivity"
-            android:theme="@style/AppTheme">
 
-        </activity>
         <activity android:name=".ui.activity.TransitionActivity"
             android:theme="@style/AppTheme.NoActionBar"
             >

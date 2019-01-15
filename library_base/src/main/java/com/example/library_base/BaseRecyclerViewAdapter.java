@@ -2,6 +2,9 @@ package com.example.library_base;
 
 import android.support.v7.widget.RecyclerView;
 
+import com.example.library_base.listener.OnItemClickListener;
+import com.example.library_base.listener.OnItemLongClickListener;
+
 import java.util.ArrayList;
 import java.util.List;
 

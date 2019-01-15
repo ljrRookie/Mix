@@ -12,7 +12,7 @@ import android.widget.Toast;
  */
 public class DebugUtil {
 
-    public static final String TAG = "jingbin";
+    public static final String TAG = "ljr";
     public static final boolean DEBUG = true;
 
     public static void toast(Context context, String content) {

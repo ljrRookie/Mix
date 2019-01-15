@@ -1,25 +1,26 @@
-package com.example.mix.ui.activity;
+package com.example.user;
 
-import android.content.Context;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.library_base.BaseActivity;
-import com.example.mix.R;
-import com.example.mix.databinding.ActivityLoginRegisterBinding;
-import com.example.mix.viewmodel.LoginViewModel;
+import com.example.user.databinding.ActivityLoginBinding;
+import com.example.user.viewmodel.LoginViewModel;
 
 
-public class LoginActivity extends BaseActivity <LoginViewModel,ActivityLoginRegisterBinding>{
+@Route(path = "/module_user/login" )
+public class LoginActivity extends BaseActivity <LoginViewModel,ActivityLoginBinding>{
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_login_register);
+       setContentView(R.layout.activity_login);
         setTitle("登录");
         showContentView();
         bindingView.setViewModel(viewModel);

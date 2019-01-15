@@ -6,11 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.library_base.BaseRecyclerViewAdapter;
 import com.example.library_base.BaseRecyclerViewHolder;
 
 import com.example.library_base.bean.ArticlesBean;
+import com.example.library_base.listener.Navigator;
+import com.example.library_base.user.UserUtils;
+import com.example.library_base.utils.DebugUtil;
 import com.example.library_base.utils.PerfectClickListener;
+import com.example.library_base.utils.ToastUtil;
+import com.example.library_base.viewmodel.CollectModel;
 import com.example.wan_android.R;
 
 import com.example.wan_android.databinding.ItemWanAndroidBannerBinding;
@@ -23,7 +29,7 @@ import com.example.wan_android.databinding.ItemWanAndroidBinding;
 public class WanAndroidAdapter extends BaseRecyclerViewAdapter<ArticlesBean> {
 
     private Activity activity;
-   // private CollectModel model;
+    private CollectModel model;
     /**
      * 是我的收藏页进来的，全部是收藏状态。bean里面没有返回isCollect信息
      */
@@ -39,7 +45,7 @@ public class WanAndroidAdapter extends BaseRecyclerViewAdapter<ArticlesBean> {
 
     public WanAndroidAdapter(Activity activity) {
         this.activity = activity;
-        //model = new CollectModel();
+        model = new CollectModel();
     }
 
     @Override
@@ -80,15 +86,14 @@ public class WanAndroidAdapter extends BaseRecyclerViewAdapter<ArticlesBean> {
                binding.vbCollect.setOnClickListener(new PerfectClickListener() {
                    @Override
                    protected void onNoDoubleClick(View v) {
-                     /*  if (UserUtil.isLogin(activity) && model != null) {
+                       if (UserUtils.isLogin() && model != null) {
                            // 为什么状态值相反？因为点了之后控件已改变状态
                            DebugUtil.error("-----binding.vbCollect.isChecked():" + binding.vbCollect.isChecked());
                            if (!binding.vbCollect.isChecked()) {
-                               model.unCollect(isCollectList, bean.getId(), bean.getOriginId(), new WanNavigator.OnCollectNavigator() {
+                               model.unCollect(isCollectList, bean.getId(), bean.getOriginId(), new Navigator.OnCollectNavigator() {
                                    @Override
                                    public void onSuccess() {
                                        if (isCollectList) {
-
                                            int indexOf = getData().indexOf(bean);
                                            // 角标始终加一
                                            int adapterPosition = getAdapterPosition();
@@ -112,7 +117,7 @@ public class WanAndroidAdapter extends BaseRecyclerViewAdapter<ArticlesBean> {
                                    }
                                });
                            } else {
-                               model.collect(bean.getId(), new WanNavigator.OnCollectNavigator() {
+                               model.collect(bean.getId(), new Navigator.OnCollectNavigator() {
                                    @Override
                                    public void onSuccess() {
                                        bean.setCollect(true);
@@ -130,7 +135,9 @@ public class WanAndroidAdapter extends BaseRecyclerViewAdapter<ArticlesBean> {
                        } else {
                            bean.setCollect(false);
                            notifyItemChanged(getAdapterPosition());
-                       }*/
+
+                           ARouter.getInstance().build("/module_user/login").navigation();
+                       }
                    }
                });
            }

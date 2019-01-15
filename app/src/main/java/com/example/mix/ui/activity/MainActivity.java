@@ -1,11 +1,7 @@
 package com.example.mix.ui.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.media.Image;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -20,10 +16,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.example.library_base.bean.User;
 import com.example.library_base.config.ActivityRequestCode;
 import com.example.library_base.config.SharedPreferencesKey;
 import com.example.library_base.ui.activity.WebViewActivity;
@@ -36,6 +30,7 @@ import com.example.mix.databinding.ActivityMainBinding;
 import com.example.mix.databinding.NavHeaderDrawerLayoutBinding;
 import com.example.mix.ui.left.TestFragemnt;
 import com.example.mix.ui.left.WanAndroidFragment;
+import com.example.user.LoginActivity;
 
 
 import java.util.ArrayList;
@@ -61,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initContentFragment();
         initDrawerLayout();
         initListener();
-        initUser();
     }
 
     private void initUser() {
@@ -70,6 +64,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             item.setTitle("个人中心");
             bind.tvName.setText(UserUtils.getUser(SharedPreferencesKey.USER_NAME));
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+      initUser();
     }
 
     private void initId() {

@@ -1,4 +1,4 @@
-package com.example.mix.viewmodel;
+package com.example.user.viewmodel;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;

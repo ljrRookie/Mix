@@ -81,4 +81,71 @@ public interface HttpClient {
      */
     @GET("navi/json")
     Observable<NavBean> getNavJson();
+
+    /**
+     * 收藏文章列表
+     *
+     * @param page 页码
+     */
+    @GET("lg/collect/list/{page}/json")
+    Observable<HomeListBean> getCollectList(@Path("page") int page);
+
+    /**
+     * 收藏本站文章，errorCode返回0为成功
+     *
+     * @param id 文章id
+     */
+    @POST("lg/collect/{id}/json")
+    Observable<HomeListBean> collect(@Path("id") int id);
+
+    /**
+     * 取消收藏(首页文章列表)
+     *
+     * @param id 文章id
+     */
+    @POST("lg/uncollect_originId/{id}/json")
+    Observable<HomeListBean> unCollectOrigin(@Path("id") int id);
+
+    /**
+     * 取消收藏，我的收藏页面（该页面包含自己录入的内容）
+     *
+     * @param id       文章id
+     * @param originId 列表页下发，无则为-1
+     *                 (代表的是你收藏之前的那篇文章本身的id；
+     *                 但是收藏支持主动添加，这种情况下，没有originId则为-1)
+     */
+    @FormUrlEncoded
+    @POST("lg/uncollect/{id}/json")
+    Observable<HomeListBean> unCollect(@Path("id") int id, @Field("originId") int originId);
+
+    /**
+     * 收藏网址
+     *
+     * @param name 标题
+     * @param link 链接
+     */
+    @FormUrlEncoded
+    @POST("lg/collect/addtool/json")
+    Observable<HomeListBean> collectUrl(@Field("name") String name, @Field("link") String link);
+
+    /**
+     * 编辑收藏网站
+     *
+     * @param name 标题
+     * @param link 链接
+     */
+    @FormUrlEncoded
+    @POST("lg/collect/updatetool/json")
+    Observable<HomeListBean> updateUrl(@Field("id") int id, @Field("name") String name, @Field("link") String link);
+
+    /**
+     * 删除收藏网站
+     *
+     * @param id 收藏网址id
+     */
+    @FormUrlEncoded
+    @POST("lg/collect/deletetool/json")
+    Observable<HomeListBean> unCollectUrl(@Field("id") int id);
+
+
 }
