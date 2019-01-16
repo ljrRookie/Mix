@@ -1,6 +1,6 @@
 # Mix
 
-基于wanAndroid、GankIo及豆瓣api开发的符合Material Desgin阅读类的开源项目。
+基于wanAndroid、github及豆瓣api开发的符合Material Desgin阅读类的开源项目。
 项目采取的是Retrofit + RxJava + MVVM-DataBinding(组件化)架构开发。
 
 
