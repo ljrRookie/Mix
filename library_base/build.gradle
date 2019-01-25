@@ -71,9 +71,7 @@ dependencies {
     api 'com.orhanobut:logger:2.2.0'
     api 'com.hyman:flowlayout-lib:1.1.2'
     api 'me.drakeet.support:toastcompat:1.1.0'
-
     api 'com.alibaba:arouter-api:1.4.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
-
-
+    api project(':library_hotfix')
 }

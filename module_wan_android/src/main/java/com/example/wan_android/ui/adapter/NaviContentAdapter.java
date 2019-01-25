@@ -14,6 +14,7 @@ import com.example.library_base.BaseRecyclerViewAdapter;
 import com.example.library_base.BaseRecyclerViewHolder;
 import com.example.library_base.bean.ArticlesBean;
 import com.example.library_base.bean.NavBean;
+import com.example.library_base.ui.activity.WebViewActivity;
 import com.example.library_base.utils.DensityUtil;
 import com.example.wan_android.R;
 import com.example.wan_android.databinding.ItemWanAndroidNavContentBinding;
@@ -60,7 +61,7 @@ public class NaviContentAdapter extends BaseRecyclerViewAdapter<NavBean.DataBean
             }
         });
         flowlayoutHot.setOnTagClickListener((view, position, parent) -> {
-          //  WebViewActivity.loadUrl(view.getContext(), beanList.get(position).getLink(), beanList.get(position).getTitle());
+           WebViewActivity.loadUrl(view.getContext(), beanList.get(position).getLink(), beanList.get(position).getTitle());
             return true;
         });
     }

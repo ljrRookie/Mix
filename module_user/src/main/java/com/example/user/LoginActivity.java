@@ -1,11 +1,9 @@
 package com.example.user;
 
 
-import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.library_base.BaseActivity;
@@ -18,9 +16,14 @@ public class LoginActivity extends BaseActivity <LoginViewModel,ActivityLoginBin
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_login);
+    protected int getContentLayoutId() {
+        return R.layout.activity_login;
+    }
+
+    @Override
+    protected void initWidget() {
+        super.initWidget();
+
         setTitle("登录");
         showContentView();
         bindingView.setViewModel(viewModel);

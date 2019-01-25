@@ -23,7 +23,7 @@ import com.example.library_base.utils.PerfectClickListener;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
-public class BaseActivity<VM extends AndroidViewModel,SV extends ViewDataBinding> extends AppCompatActivity {
+public abstract class BaseActivity<VM extends AndroidViewModel,SV extends ViewDataBinding> extends AppCompatActivity {
     // ViewModel
     protected VM viewModel;
     // 布局view
@@ -39,8 +39,47 @@ public class BaseActivity<VM extends AndroidViewModel,SV extends ViewDataBinding
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        int layId = getContentLayoutId();
+        setContentView(layId);
+        initWidget();
+        initArgs(getIntent().getExtras());
+        initData();
+    }
+    /**
+     * 初始化相关参数
+     *
+     * @param bundle 参数Bundle
+     * @return 如果参数正确返回True，错误返回False
+     */
+    protected void initArgs(Bundle bundle) {
+    }
+    /**
+     * 得到当前界面的资源文件Id
+     *
+     * @return 资源文件Id
+     */
+    protected abstract int getContentLayoutId();
+
+    /**
+     * 初始化控件调用之前
+     */
+    protected void initBefore() {
+
     }
 
+    /**
+     * 初始化控件
+     */
+    protected void initWidget() {
+
+    }
+    /**
+     * 初始化数据
+     */
+    public void initData() {
+
+    }
     @Override
     public void setContentView(int layoutResID) {
          mBaseBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.activity_base, null, false);

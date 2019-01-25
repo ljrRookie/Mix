@@ -3,15 +3,22 @@ package com.example.library_base.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
@@ -25,6 +32,9 @@ import com.example.library_base.ui.webview.IWebPageView;
 import com.example.library_base.ui.webview.ImageClickInterface;
 import com.example.library_base.ui.webview.MyWebChromeClient;
 import com.example.library_base.ui.webview.MyWebViewClient;
+import com.example.library_base.utils.BaseTools;
+import com.example.library_base.utils.RxSaveImage;
+import com.example.library_base.utils.ShareUtils;
 import com.example.library_base.utils.ToastUtil;
 
 
@@ -43,6 +53,8 @@ public class WebViewActivity extends AppCompatActivity implements IWebPageView{
     private String mUrl;
     // 可滚动的title 使用简单 没有渐变效果，文字两旁有阴影
     private TextView tvGunTitle;
+    private AlertDialog DIALOG;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +63,7 @@ public class WebViewActivity extends AppCompatActivity implements IWebPageView{
             mTitle = getIntent().getStringExtra("mTitle");
             mUrl = getIntent().getStringExtra("mUrl");
         }
+        DIALOG = new AlertDialog.Builder(this).create();
         initTitle();
         initWebView();
         webView.loadUrl(mUrl);
@@ -100,12 +113,7 @@ public class WebViewActivity extends AppCompatActivity implements IWebPageView{
         // 与js交互
         webView.addJavascriptInterface(new ImageClickInterface(this), "injectedObject");
 
-       /* webView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                return handleLongImage();
-            }
-        });*/
+        webView.setOnLongClickListener(v -> handleLongImage());
     }
 
     private void initTitle() {
@@ -124,8 +132,8 @@ public class WebViewActivity extends AppCompatActivity implements IWebPageView{
             actionBar.setDisplayShowTitleEnabled(false);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        //mTitleToolBar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.actionbar_more));
-        tvGunTitle.postDelayed(() -> tvGunTitle.setSelected(true), 1900);
+       // mTitleToolBar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.actionbar_more));
+        tvGunTitle.postDelayed(() -> tvGunTitle.setSelected(true), 2000);
         setTitle(mTitle);
         mTitleToolBar.setNavigationOnClickListener(v -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -138,9 +146,69 @@ public class WebViewActivity extends AppCompatActivity implements IWebPageView{
     public void setTitle(String mTitle) {
         tvGunTitle.setText(mTitle);
     }
+    /**
+     * 长按图片事件处理
+     */
+    private boolean handleLongImage() {
+        final WebView.HitTestResult hitTestResult = webView.getHitTestResult();
+        // 如果是图片类型或者是带有图片链接的类型
+        if (hitTestResult.getType() == WebView.HitTestResult.IMAGE_TYPE ||
+                hitTestResult.getType() == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
+            // 弹出保存图片的对话框
+            String picUrl = hitTestResult.getExtra();
+            DIALOG.show();
+            final Window window = DIALOG.getWindow();
+            if (window != null) {
+                window.setContentView(R.layout.dialog_photo);
+                window.setGravity(Gravity.BOTTOM);
+                window.setWindowAnimations(R.style.SlideInBottomSlideOutBottom);
+                window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                //设置属性
+                final WindowManager.LayoutParams params = window.getAttributes();
+                params.width = WindowManager.LayoutParams.MATCH_PARENT;
+                params.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+                params.dimAmount = 0.5f;
+                window.setAttributes(params);
+                window.findViewById(R.id.tv_photo).setOnClickListener(view -> {
+                    DIALOG.cancel();
+                });
+                window.findViewById(R.id.tv_download).setOnClickListener(view -> {
+                     RxSaveImage.saveImageToGallery(WebViewActivity.this, picUrl, picUrl);
+                    DIALOG.cancel();
+                }); window.findViewById(R.id.tv_cancel).setOnClickListener(view -> {
+                    DIALOG.cancel();
+                });
+            }
+
+            return true;
+        }
+        return false;
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar, menu);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        int i = item.getItemId();
+        if (i == R.id.actionbar_share) {// 分享到
+            String shareText = mWebChromeClient.getTitle() + webView.getUrl() + " (分享自RookieLjr)";
+            ShareUtils.share(WebViewActivity.this, shareText);
+
+        } else if (i == R.id.actionbar_open) {// 打开链接
+             BaseTools.openLink(WebViewActivity.this, webView.getUrl());
+
+        } else if (i == R.id.actionbar_webview_refresh) {// 刷新页面
+            if (webView != null) {
+                webView.reload();
+            }
+
+        } else if (i == R.id.actionbar_collect) {// 添加到收藏
+
+        } else {
+        }
         return super.onOptionsItemSelected(item);
     }
     /**

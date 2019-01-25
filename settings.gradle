@@ -1,1 +1,1 @@
-include ':app', ':library_base', ':library_res', ':library_res', ':wan_android', ':xrecyclerview', ':module_user'
+include ':app', ':library_base', ':library_res', ':library_res', ':module_wan_android', ':xrecyclerview', ':module_user', ':imagepager', ':library_hotfix'

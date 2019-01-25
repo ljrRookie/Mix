@@ -12,6 +12,7 @@ import com.example.library_base.BaseRecyclerViewHolder;
 import com.example.library_base.bean.TypeBean;
 import com.example.wan_android.R;
 import com.example.wan_android.databinding.ItemWanAndroidTypeBinding;
+import com.example.wan_android.ui.activity.ArticleListActivity;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -60,7 +61,7 @@ public class TypeAdapter extends BaseRecyclerViewAdapter<TypeBean.DataBean> {
         });
         flowlayoutHot.setOnTagClickListener((view, position, parent) -> {
             TypeBean.DataBean.ChildrenBean childrenBean = children.get(position);
-           // ArticleListActivity.start(view.getContext(), childrenBean.getId(), childrenBean.getName());
+            ArticleListActivity.start(view.getContext(), childrenBean.getId(), childrenBean.getName());
             return true;
         });
     }

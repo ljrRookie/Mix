@@ -2,4 +2,13 @@
     <string name="app_name">library_res</string>
     <string name="edit_account">请输入账号</string>
     <string name="edit_pwd">请输入密码</string>
+
+    <string name="actionbar_webview_share">分享</string>
+    <string name="actionbar_webview_cope">复制链接</string>
+    <string name="actionbar_webview_open">浏览器打开</string>
+    <string name="actionbar_webview_refresh">刷新</string>
+    <string name="actionbar_webview_collect">添加到收藏</string>
+
+    <string name="action_share">分享</string>
+    <string name="picture_has_save_to">已保存至 %s</string>
 </resources>

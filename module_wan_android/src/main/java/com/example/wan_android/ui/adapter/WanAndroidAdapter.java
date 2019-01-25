@@ -12,6 +12,7 @@ import com.example.library_base.BaseRecyclerViewHolder;
 
 import com.example.library_base.bean.ArticlesBean;
 import com.example.library_base.listener.Navigator;
+import com.example.library_base.ui.activity.WebViewActivity;
 import com.example.library_base.user.UserUtils;
 import com.example.library_base.utils.DebugUtil;
 import com.example.library_base.utils.PerfectClickListener;
@@ -20,7 +21,7 @@ import com.example.library_base.viewmodel.CollectModel;
 import com.example.wan_android.R;
 
 import com.example.wan_android.databinding.ItemWanAndroidBannerBinding;
-import com.example.wan_android.databinding.ItemWanAndroidBinding;
+import com.example.wan_android.ui.activity.ArticleListActivity;
 
 /**
  * Created by jingbin on 2016/11/25.
@@ -135,7 +136,7 @@ public class WanAndroidAdapter extends BaseRecyclerViewAdapter<ArticlesBean> {
                        } else {
                            bean.setCollect(false);
                            notifyItemChanged(getAdapterPosition());
-
+                            //登录
                            ARouter.getInstance().build("/module_user/login").navigation();
                        }
                    }
@@ -149,10 +150,10 @@ public class WanAndroidAdapter extends BaseRecyclerViewAdapter<ArticlesBean> {
     }
 
     public void openDetail(ArticlesBean bean) {
-      //  WebViewActivity.loadUrl(activity, bean.getLink(), bean.getTitle());
+        WebViewActivity.loadUrl(activity, bean.getLink(), bean.getTitle());
     }
 
     public void openArticleList(ArticlesBean bean) {
-       // ArticleListActivity.start(activity, bean.getChapterId(), bean.getChapterName());
+        ArticleListActivity.start(activity, bean.getChapterId(), bean.getChapterName());
     }
 }

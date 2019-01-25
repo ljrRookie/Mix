@@ -9,10 +9,12 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/imagepager" />
             <option value="$PROJECT_DIR$/library_base" />
+            <option value="$PROJECT_DIR$/library_hotfix" />
             <option value="$PROJECT_DIR$/library_res" />
             <option value="$PROJECT_DIR$/module_user" />
-            <option value="$PROJECT_DIR$/wan_android" />
+            <option value="$PROJECT_DIR$/module_wan_android" />
             <option value="$PROJECT_DIR$/xrecyclerview" />
           </set>
         </option>

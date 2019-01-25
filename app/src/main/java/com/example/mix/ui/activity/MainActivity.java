@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initContentFragment();
         initDrawerLayout();
         initListener();
+
     }
 
     private void initUser() {
@@ -230,7 +231,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     startActivityForResult(intent, ActivityRequestCode.LOGIN_SUCCESS);
                 }
             } else if (id == R.id.nav_collect) {
-
+                Intent intent = new Intent(this, HotfixActivity.class);
+                startActivity(intent);
             } else if (id == R.id.nav_exit) {
                 // 退出应用
                 finish();

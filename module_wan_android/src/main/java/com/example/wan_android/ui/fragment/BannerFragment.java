@@ -131,6 +131,8 @@ public class BannerFragment extends BaseFragment<WanAndroidListViewModel,Fragmen
         ImageLoadUtil.displayFadeImage(androidBinding.ivBannerTwo, bannerImages.get(position2), 3);
         int finalPosition = position1;
         int finalPosition2 = position2;
+       androidBinding.ivBannerOne.setOnClickListener(v -> WebViewActivity.loadUrl(getContext(), result.get(finalPosition).getUrl(), result.get(finalPosition).getTitle()));
+       androidBinding.ivBannerTwo.setOnClickListener(v -> WebViewActivity.loadUrl(getContext(), result.get(finalPosition2).getUrl(), result.get(finalPosition2).getTitle()));
        isLoadBanner = true;
     }
     /**
